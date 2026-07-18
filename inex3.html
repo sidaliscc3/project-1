@@ -1,0 +1,155 @@
+<html>
+<head>
+  <title>My Web Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+      <style>
+      #m1{ 
+        background-color: lightblue;
+     }
+     #m2{
+       width: 82vh;
+    border: 3px solid rgb(233, 229, 229);
+    border-radius: 20px;
+    border-collapse: separate;
+    border-spacing: 10px;
+
+     }
+     .m5{
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center; 
+      gap: 350px;
+     }
+  
+    #m4{
+      display: flex;
+      justify-content: center; 
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+
+    }
+    td{
+      
+       padding: 8px;
+      text-align: right;
+      border:3px solid rgb(233, 229, 229);
+       border-radius: 20px;
+     
+    }
+    tr:hover {background-color: #f5f5f5;}
+    #m6{
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+       
+      
+     
+    }
+   
+  
+
+  </style>
+</head>
+ 
+
+<body id="m1">
+  
+  <div id="m4">
+     <diV class="m5">
+        <button id="m6" onclick=" poupfun() ">+</button>
+           <h2 style="text-shadow: 2px 2px 4px #c29a9a;border-bottom-style: double; ">my todo list </h2>
+       </diV>
+     
+    <div >
+    
+  
+       <table id="m2">
+       
+        
+       </table>
+
+
+
+</div>
+</div>
+
+<script>
+  
+      function poupfun(){
+        
+       
+       let a = prompt("what your task for today");
+      
+       if ( a == "") {
+        while (a == "") {
+          a = prompt("please enter your task");
+         //alert("please enter your task");
+       }
+      }
+       if (a != "") {
+        const t= new Date().toLocaleString();
+        
+         /*document.getElementById("m2").innerHTML += 
+        // '<tr> <td> ' + a + '<br>' + t + ' </td></td></tr>'
+         
+           */
+          document.getElementById("m2").innerHTML += `
+<tr>
+    <td>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+
+            <div style="display:flex; align-items:center; gap: 5px;">
+                <button  style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="edittask(this)">&#128219</button>
+                <button style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="deleteTask(this)">&#128465</button>
+                <button style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="doneTask(this)">&#10003</button>
+            </div>
+
+            <div>
+                <strong>${a}</strong><br>
+                <small>${t}</small>
+            </div>
+
+        </div>
+    </td>
+        </tr>
+        `;
+      }
+      function saveRow(r) {
+    let row = r.closest("tr");
+
+    let task = row.cells[0].innerText;
+    let time = row.cells[1].innerText;
+
+    let list = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    list.push({ task, time });
+
+    localStorage.setItem("tasks", JSON.stringify(list));
+}
+    }
+    function deleteTask(r) {
+    r.closest("tr").remove();
+    }
+    function doneTask(r) {
+    var row = r.closest("tr");
+    row.style.backgroundColor = "lightgreen";
+   
+}
+function edittask(r){
+  deleteTask(r);
+  poupfun();
+    
+}
+
+localStorage.getItem("task");
+localStorage.getItem("done");
+
+</script>
+
+</body>
+
+</html>
