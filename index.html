@@ -1,82 +1,33 @@
-<html>
+<html class="dark" >
 <head>
   <title>My Web Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
       <style>
-      #m1{ 
-        background-color: lightblue;
-     }
-     #m2{
-       width: 82vh;
-    border: 3px solid rgb(233, 229, 229);
-    border-radius: 20px;
-    border-collapse: separate;
-    border-spacing: 10px;
-
-     }
-     .m5{
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-      align-items: center; 
-      gap: 350px;
-     }
-  
-    #m4{
-      display: flex;
-      justify-content: center; 
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-
-    }
-    td{
-      
-       padding: 8px;
-      text-align: right;
-      border:3px solid rgb(233, 229, 229);
-       border-radius: 20px;
-     
-    }
-    tr:hover {background-color: #f5f5f5;}
-    #m6{
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-       
-      
-     
-    }
-   
-  
-
+ 
   </style>
 </head>
- 
+ <body class="min-h-screen  bg-gray-100 ">
+  <div class="flex items-center justify-center mt-20">
+    <div class="bg-white p-8 border-r-10 border-l-10 w-150 rounded-xl shadow-lg flex flex-raw gap-20">
+        <h2 class="text-2xl font-sans text-center mb-4 mt-3 underline underline-offset-1">
+            My <a class="text-blue-600 ">todo</a> List
+        </h2>
 
-<body id="m1">
-  
-  <div id="m4">
-     <diV class="m5">
-        <button id="m6" onclick=" poupfun() ">+</button>
-           <h2 style="text-shadow: 2px 2px 4px #c29a9a;border-bottom-style: double; ">my todo list </h2>
-       </diV>
-     
-    <div >
+        <button
+            class="w-14 h-14 rounded-full bg-blue-600 text-white text-3xl shadow-lg  hover:bg-white hover:text-blue-600 hover:border-2 border-blue-500 transition ml-auto" onclick="poupfun()">
+            +
+        </button>
+    </div>
+  </div>
+ 
     
   
-       <table id="m2">
+       <div id="m2" class="flex  mt-4   flex-col justify-center items-center ">
        
         
-       </table>
-
-    
-  
-       
-</div>
-</div>
+       </div>
 <script type="module" src="/src/main.js"></script>
 <script>
   
@@ -94,29 +45,24 @@
        if (a != "") {
         const t= new Date().toLocaleString();
         
-         /*document.getElementById("m2").innerHTML += 
-        // '<tr> <td> ' + a + '<br>' + t + ' </td></td></tr>'
-         
-           */
+        
           document.getElementById("m2").innerHTML += `
-<tr>
-    <td>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
 
-            <div style="display:flex; align-items:center; gap: 5px;">
-                <button  style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="edittask(this)">&#128219</button>
-                <button style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="deleteTask(this)">&#128465</button>
-                <button style="border: 2px solid #ccc; border-radius: 5px; padding: 5px;" onclick="doneTask(this)">&#10003</button>
+        <div class=" h-22  border-2 border-solid   mt-4 flex flex-row w-130 rounded-xl justify-between pl-3 pr-3 drop-shadow-lg delay-150 duration-300  hover:zoom-110  ">
+
+            <div  class=" flex gap-4  justify-center items-center">
+                <button  class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-blue-400 " onclick= "edittask(this)">&#128219</button>
+                <button class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-red-600" onclick="deleteTask(this)">&#128465</button>
+                <button class="border-solid rounded-2xl w-13  border-2 border-solid rounded-xl h-13 hover:bg-green-500" onclick="doneTask(this)">&#10003</button>
             </div>
 
-            <div>
-                <strong>${a}</strong><br>
+            <div class="flex flex-col justify-center items-center ">
+                <strong class="">${a}</strong><br>
                 <small>${t}</small>
             </div>
 
         </div>
-    </td>
-        </tr>
+   
         `;
       }
       function saveRow(r) {
