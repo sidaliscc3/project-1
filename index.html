@@ -28,72 +28,127 @@
        
         
        </div>
+
+       <!-- <div class="w-88 h-50 border-2 border-solid rounded-xl  flex flex-col justify-center items-center">
+           <input type="text" id="m3" class="border-2 border-s-olive-800 mb-6">
+           <a>pleas inter your task</a>
+             <div class="flex flex-row gap-5 mt-7">
+                  <button id="m1" class="border-solid rounded-2xl w-16 border-2 border-solid rounded-xl h-14 hover:bg-gray-400">ok</button>
+                  <button id="m2" class="border-solid rounded-2xl w-16 border-2 border-solid rounded-xl h-14 hover:bg-gray-400">cancel</button>
+             </div>
+       </div> --> 
+
+       <div  id="m" class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm invisible">
+
+    <div class="w-96 bg-white rounded-2xl shadow-2xl p-6 animate-in">
+
+        <!-- Icon -->
+        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+            <span class="text-1xl">📝</span>
+        </div>
+
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-center mt-4">
+            inter your task
+        </h2>
+
+        <!-- Description -->
+        <p class="text-gray-500 text-center mt-2">
+            Enter your task below and click OK to save it.
+        </p>
+
+        <!-- Input -->
+        <input
+            type="text"
+            id ="m1"
+            placeholder="your task for today"
+            class="w-full mt-6 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+
+        <!-- Buttons -->
+        <div class="flex justify-end gap-3 mt-6">
+
+            <button id ="m2"
+                class="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 transition duration-300">
+                Cancel
+            </button>
+
+            <button id ="m3"
+                class="px-5 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+    <div id="m4"></div>
+
+</div>
 <script type="module" src="/src/main.js"></script>
 <script>
   
       function poupfun(){
-        
-       
-       let a = prompt("what your task for today");
+          document.getElementById("m").classList.add("visible")
+          let value = document.getElementById("m").value;
+           let b =document.getElementById("m2")
+            let c =document.getElementById("m3")
       
-       if ( a == "") {
-        while (a == "") {
-          a = prompt("please enter your task");
-         //alert("please enter your task");
-       }
-      }
-       if (a != "") {
-        const t= new Date().toLocaleString();
+
+          if (value =="") {
+         document.getElementById("m").innerHTML+='<p class="class="text-gray-500 text-center mt-2 fixed inset-0 flex items-center justify-center">inter a valide inpute</p>'
+         }
+         if (value != ""){
+          alert("hello");
+         }
         
-        
-          document.getElementById("m2").innerHTML += `
-
-        <div class=" h-22  border-2 border-solid   mt-4 flex flex-row w-130 rounded-xl justify-between pl-3 pr-3 drop-shadow-lg delay-150 duration-300  hover:zoom-110  ">
-
-            <div  class=" flex gap-4  justify-center items-center">
-                <button  class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-blue-400 " onclick= "edittask(this)">&#128219</button>
-                <button class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-red-600" onclick="deleteTask(this)">&#128465</button>
-                <button class="border-solid rounded-2xl w-13  border-2 border-solid rounded-xl h-13 hover:bg-green-500" onclick="doneTask(this)">&#10003</button>
-            </div>
-
-            <div class="flex flex-col justify-center items-center ">
-                <strong class="">${a}</strong><br>
-                <small>${t}</small>
-            </div>
-
-        </div>
-   
-        `;
-      }
-      function saveRow(r) {
-    let row = r.closest("tr");
-
-    let task = row.cells[0].innerText;
-    let time = row.cells[1].innerText;
-
-    let list = JSON.parse(localStorage.getItem("tasks")) || [];
-
-    list.push({ task, time });
-
-    localStorage.setItem("tasks", JSON.stringify(list));
-}
     }
-    function deleteTask(r) {
-    r.closest("tr").remove();
-    }
-    function doneTask(r) {
-    var row = r.closest("tr");
-    row.style.backgroundColor = "lightgreen";
+//           document.getElementById("m2").innerHTML += `
+
+//         <div class=" h-22  border-2 border-solid   mt-4 flex flex-row w-130 rounded-xl justify-between pl-3 pr-3 drop-shadow-lg delay-150 duration-300  hover:zoom-110  ">
+
+//             <div  class=" flex gap-4  justify-center items-center">
+//                 <button  class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-blue-400 " onclick= "edittask(this)">&#128219</button>
+//                 <button class="border-solid rounded-2xl w-13 border-2 border-solid rounded-xl h-13 hover:bg-red-600" onclick="deleteTask(this)">&#128465</button>
+//                 <button class="border-solid rounded-2xl w-13  border-2 border-solid rounded-xl h-13 hover:bg-green-500" onclick="doneTask(this)">&#10003</button>
+//             </div>
+
+//             <div class="flex flex-col justify-center items-center ">
+//                 <strong class="">${a}</strong><br>
+//                 <small>${t}</small>
+//             </div>
+
+//         </div>
    
-}
-function edittask(r){
-  deleteTask(r);
-  poupfun();
+//         `;
+//       }
+//       function saveRow(r) {
+//     let row = r.closest("tr");
+
+//     let task = row.cells[0].innerText;
+//     let time = row.cells[1].innerText;
+
+//     let list = JSON.parse(localStorage.getItem("tasks")) || [];
+
+//     list.push({ task, time });
+
+//     localStorage.setItem("tasks", JSON.stringify(list));
+// }
+//     }
+//     function deleteTask(r) {
+//     r.closest("tr").remove();
+//     }
+//     function doneTask(r) {
+//     var row = r.closest("tr");
+//     row.style.backgroundColor = "lightgreen";
+   
+// }
+// function edittask(r){
+//   deleteTask(r);
+//   poupfun();
     
-}
+// }
 
-localStorage.getItem("task");
-localStorage.getItem("done");
+// localStorage.getItem("task");
+// localStorage.getItem("done");
 
 </script>
 <script type="module" src="/src/main.js"></script>
