@@ -3,6 +3,7 @@ import "./style.css";
 window.onload = function () {
 
     window.poupfun = function () {
+        document.getElementById("m1").value = "";
         document.getElementById("m").classList.add("visible");
     };
  
@@ -47,22 +48,20 @@ window.onload = function () {
      document.getElementById("m1").value = "";
 
 
-     window.edittask=function(){
-        document.getElementById("m1").value = "";
-       document.getElementById("m").classList.add("visible");
-       
+     window.edittask=function(button){
+        const b=button.closest(".task");
+        
 
      }
 
       window.deleteTask = function(button) {
-    const element = button.closest(".task");
-    element.classList.add(
-
+       const element = button.closest(".task");
+      element.classList.add(
         "animate__animated",
         "animate__fadeOut");
-    task.addEventListener("animationend", () => {
-        task.remove();
-    });
+     setTimeout(() => {
+      element.remove();
+      }, 1000);
         
       }
     
