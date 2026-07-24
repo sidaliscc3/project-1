@@ -10,6 +10,7 @@ window.onload = function () {
     document.getElementById("m5").addEventListener("click", function () {
        
         document.getElementById("m").classList.remove("visible");
+        document.getElementById("m6").innerHTML ='<p class="text-gray-500 text-center mt-2" > Enter your task below and click OK to save it.</p>'
     });
 
 };
@@ -18,7 +19,8 @@ window.onload = function () {
     o.addEventListener("click", function (){
         const v = document.getElementById("m1").value;
         if (v === ""){
-            document.getElementById("m4").innerHTML += '<p class="text-gray-500 text-center mt-2">ples inter valid value</p>'
+            
+            document.getElementById("m6").innerHTML = '<p class="text-gray-500 text-center mt-2">ples inter valid value</p>'
            
         }
         if (v !== ""){
@@ -34,8 +36,8 @@ window.onload = function () {
                 <button class="border-solid rounded-2xl w-13  border-2 border-solid rounded-xl h-13 hover:bg-green-500" onclick="doneTask(this)">&#10003</button>
             </div>
 
-            <div class="flex flex-col justify-center items-center ">
-                <strong class="">${v}</strong><br>
+            <div class="task-content  flex flex-col justify-center items-center ">
+                <strong id="1">${v}</strong><br>
                 <small>${t}</small>
             </div>
 
@@ -48,11 +50,45 @@ window.onload = function () {
      document.getElementById("m1").value = "";
 
 
-     window.edittask=function(button){
-        const b=button.closest(".task");
-        
+window.edittask = function(button) {
+    const b = button.closest(".task");
 
-     }
+    const strong = b.querySelector("strong");
+    const input = b.querySelector("input");
+
+    if (strong) {
+        // تحويل strong إلى input
+        const newInput = document.createElement("input");
+
+        newInput.value = strong.textContent;
+
+        newInput.classList.add(
+            "border-2",
+            "border-blue-500",
+            "rounded-lg",
+            "px-2",
+            "py-1",
+            "outline-none"
+        );
+
+        strong.replaceWith(newInput);
+
+        // تغيير شكل الزر
+        button.textContent = "Save";
+
+    } else if (input) {
+        // إنشاء strong جديد
+        const newStrong = document.createElement("strong");
+
+        newStrong.textContent = input.value;
+
+        // استبدال input بـ strong
+        input.replaceWith(newStrong);
+
+        // إعادة الزر إلى Edit
+        button.textContent = "Edit";
+    }
+};
 
       window.deleteTask = function(button) {
        const element = button.closest(".task");
@@ -64,8 +100,49 @@ window.onload = function () {
       }, 1000);
         
       }
-    
+    window.doneTask = function(button) {
+    const task = button.closest(".task");
 
+    // نضيف animation للزر نفسه
+    button.classList.add(
+        "animate-pulse",
+        "bg-green-500",
+        "text-white"
+    );
+
+    let battery = 0;
+
+    const charging = setInterval(() => {
+        battery += 10;
+
+        // تغيير لون الزر تدريجياً
+        if (battery <= 30) {
+            task.classList.add("bg-red-500");
+        } 
+        else if (battery <= 70) {
+            task.classList.remove("bg-red-500");
+            task.classList.add("bg-yellow-400");
+        } 
+        else {
+            task.classList.remove("bg-yellow-400");
+            task.classList.add("bg-green-500");
+        }
+
+        if (battery >= 100) {
+            clearInterval(charging);
+
+            // إيقاف animation
+            task.classList.remove("animate-pulse");
+
+            // تغيير شكل المهمة
+            task.classList.add(
+                "opacity-50",
+                "line-through"
+            );
+        }
+
+    }, 100);
+};
         // .document.getElementById("m3").addEventListener("click",function(){
         //     if (value ==""){
         //         document.getElementById("m").classList.add("invisible");
